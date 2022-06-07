@@ -1,0 +1,22 @@
+<?php 
+	session_start();
+	if (isset($_SESSION['Login']) && isset($_SESSION['Password'])) 
+	{
+		
+	}
+	else
+	{
+		header ('location: index.php');
+	}
+	$fichier = 'DVMath_DB'; //a modifier
+	$fichier_taille = filesize($fichier);
+	header("Content-disposition: attachment; filename=$fichier");
+	header("Content-Type: application/force-download");
+	header("Content-Transfer-Encoding: application/octet-stream");
+	header("Content-Length: $fichier_taille");
+	header("Pragma: no-cache");
+	header("Cache-Control: must-revalidate, post-check=0, pre-check=0, public");
+	header("Expires: 0");
+	readfile($fichier);
+?>
+
